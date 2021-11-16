@@ -2,3 +2,4 @@
 x = 1
 print(x)
 print("Hello")
+print("This is just a test")
