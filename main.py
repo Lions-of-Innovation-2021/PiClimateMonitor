@@ -1,3 +1,6 @@
-# This is code for the project
-x = 1
-print(x)
+#Analyze Data
+#Variable values will be replaced by the values from the sensors
+temperature = 0 #Fahrenheit
+humidity = 0 / 100 #We want humidity as a decimal
+smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
+risk = temperature - (temperature * humidity)
