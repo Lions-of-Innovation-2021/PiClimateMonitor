@@ -10,8 +10,8 @@ box_id = 0
 box_sheet_range = ''
 
 def init_box():
-  box_id = sheets_talker.worksheet.row_count+1
-  box_sheet_range = 'A' + str(box_id) + ':B' + str(box_id)
+  global box_id = sheets_talker.worksheet.row_count+1
+  global box_sheet_range = 'A' + str(box_id) + ':B' + str(box_id)
   sheets_talker.worksheet.add_rows(1) #add a new row for the box
 
 init_box()
