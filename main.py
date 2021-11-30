@@ -8,4 +8,6 @@ risk = temperature - (temperature * humidity)
 
 box_id = sheets_talker.worksheet.row_count+1
 print(box_id)
-sheets_talker.worksheet.update('A' + str(box_id) + ':B' + str(box_id), [str(box_id), str(risk)])
+range_to_update = 'A' + str(box_id) + ':B' + str(box_id)
+print(range_to_update)
+sheets_talker.worksheet.update(range_to_update, [str(box_id), str(risk)])
