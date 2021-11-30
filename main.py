@@ -17,4 +17,4 @@ def init_box():
   sheets_talker.worksheet.add_rows(1) #add a new row for the box
 
 init_box()
-sheets_talker.worksheet.update(box_sheet_range, [str(box_id), str(risk)])
+sheets_talker.worksheet.update(box_sheet_range, [[str(box_id), str(risk)]])
