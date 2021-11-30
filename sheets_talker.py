@@ -11,6 +11,7 @@ file_name = 'client_key.json'
 creds = ServiceAccountCredentials.from_json_keyfile_name(file_name,scope)
 client = gspread.authorize(creds)
 
+#api: https://docs.gspread.org/en/latest/api.html#gspread.worksheet.Worksheet
 worksheet = client.open('Sheet Name Here').sheet1
 
 # read a cell
