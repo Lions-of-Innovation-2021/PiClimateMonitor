@@ -15,9 +15,8 @@ client = gspread.authorize(creds)
 sheet_name = 'STEM Challenge Spreadsheet'
 worksheet = client.open(sheet_name).sheet1
 
-# read a cell
-value = worksheet.get('A1') # works with multiple cells
-print(value)
+def get_values(range):
+    return worksheet.get(range)
 
-# update a cell
-worksheet.update('A1', 'Hello') # works with multiple cells
+def set_values(range, values):
+    worksheet.update(range, values)
