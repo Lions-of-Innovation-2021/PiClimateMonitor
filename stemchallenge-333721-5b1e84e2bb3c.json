@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "stemchallenge-333721",
+  "private_key_id": "5b1e84e2bb3c99160a6bcfa5beb9044d3973759b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDQ9YiAiju6aLy3\nT4cpg8v5M/PCLdfy1A7tVqRHZU/bOOfBtaf8BxqOijPNgyiWF0BOrMLKxV62Ahfu\nh24kpUBk78HQMblPypZHZwqp3HkHirHqnBSwSnZRcgTLzI5+/xwkUQfKQfR/cvh4\nGHm5V2YhV8ZsDwmxsu5Tn1sz+i3k7riOsHHLqYtG+y/qTbqGJ7LwudFr9t0As77w\nBHLJcnLm1po8I/I4RHELEyxu4KJTSbux3w1xl28lr5N5whPDVjerCrjWOg5R1SDG\nZ2wobKmquhI+XCOeEBIL3HYQjl/jejrnT4fG8p/K28k+AXz3TkCbo9UqO69Lsnhb\nMr7QTRDJAgMBAAECggEADp2d9p+0nc1FpezCH31AfyXLHwHl4O5EPQWaaAQGGedZ\nDouOPGqiyOWRygYqiJUHwnkDBvvXLBPpaJ3Abn/AiU7b15wiwhoBeO0UKd1p+cUR\nvL8+EzaiIABBpZ+hN/DQHxor2VHTsDZyerP7j6M1WY+yKUzD+NHzKZYz4ubU3vZT\nQLuQg2H5RMu/WWIZN8XxS5m05/1sDgrxwg97PgbEHkcUYEtTD5QfGhoAPn0oFZ2g\nQJU2OnMt9mbdA2Ersi2w18J1Wyf4eLbHvvuJA/olraiBGqlisY1BVCDfnRFY6CZ9\nsfvdNzwlv43r9mVxRfB/rk6jyWUVKQdto1fFpLntoQKBgQDwypzTkxfsa92sDlsv\nJgMH/6CD2BD8lCKxPQIz2aMUJfqnSgg5EdSTV5lIyZ3liWhhYA0JzJCmJXSIWWX7\n1sY4fuIP+iAYCreywAlVvAqCxXE974E4DgpA1Y0Yx4IeaUoiXdMQK+RZbUgg2NiE\nn4LVavXBmYQhF2oS3jXTKrMKWwKBgQDeKDgvCKAarihz74ZHzv1KzL4iJWpXhL+H\nY2oMJN0ZqzxNrOAdgvbdWoHM1TXcWsMXZ2gyILQcAxaqDT//nINRhVQoUqUm8AlM\npFdi2TgQHwT9O/Oj6kX9z+BbKp0fcGR9CLqc9h75UGpbwZAxVz+2UH6aCqMVrnEg\nh9rpKWxSqwKBgG4FlhzSVBcRvkrUkHN9odrwwW4ctr5CDYwAfVYltm8JX3s6x4EU\nFZZxazen7/6mh0we8DYvA1T3PkTi3Edy/kVoLHDyb+GsW/1P47QJ5J+WCcUr/1YW\njDbNnNfaqSiuIVKMnlkARSlbVp6zllMa81QCuGIKfCYGpdATOnLPStmLAoGAO+vj\nQ6Ry8t9Y3/SSZpoJLfzNqA4pgdO3iYAiIYZr8LmEOXtQtAUYKxp3elVkArykdJKa\nwzKZAhk/Kr0KLxr7PKjWy02HaFpEV9zYCTyH56lGQjvCesr89/nzDQQQf2NkZ2lM\nVHv6XMr49SjfiL982uMZUtldpcJ4lwqt3EglBKMCgYEAsrxfV+CHVEzYbTP8XIve\nsUbyIIrK8jz4ZFhRsLjcGidJ8clq7Tz7BqM/FlnbeGHnLlAaTYAjB5zr9ACqqCaz\naXU/3jLD4gO0LxAFZsTds79+wjPn8h7ZXA3Ds8NwHIqfN5KaAx0edvywE5CNqBMu\nyZPsgs9N87Z2zADrsAjoQZI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "stempythonsheets@stemchallenge-333721.iam.gserviceaccount.com",
+  "client_id": "117112781170991943176",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/stempythonsheets%40stemchallenge-333721.iam.gserviceaccount.com"
+}
