@@ -12,7 +12,8 @@ creds = ServiceAccountCredentials.from_json_keyfile_name(file_name,scope)
 client = gspread.authorize(creds)
 
 #api: https://docs.gspread.org/en/latest/api.html#gspread.worksheet.Worksheet
-worksheet = client.open('Sheet Name Here').sheet1
+sheet_name = 'STEM Challenege Spreadsheet'
+worksheet = client.open(sheet_name).sheet1
 
 # read a cell
 cell = worksheet.cell(0, 0) #row, col
