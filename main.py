@@ -6,4 +6,6 @@ humidity = 0 / 100 #We want humidity as a decimal
 smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 risk = temperature - (temperature * humidity)
 
-sheets_talker.set_values('A1', str(risk))
+box_id = sheets_talker.worksheet.row_count+1
+print(box_id)
+sheets_talker.worksheet.update('A' + str(box_id) + ':B' + str(box_id), [str(box_id), str(risk)])
