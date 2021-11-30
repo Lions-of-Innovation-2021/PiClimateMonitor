@@ -16,13 +16,8 @@ sheet_name = 'STEM Challenge Spreadsheet'
 worksheet = client.open(sheet_name).sheet1
 
 # read a cell
-cell = worksheet.cell(0, 0) #row, col
-print(cell.value)
-
-worksheet.get('A1') # works with multiple cells
+value = worksheet.get('A1') # works with multiple cells
+print(value)
 
 # update a cell
-worksheet.update_cell(0, 0, 'Text') #row, col
-worksheet.update_acell('A1', 'Text') #works with one cell
-
 worksheet.update('A1', 'Hello') # works with multiple cells
