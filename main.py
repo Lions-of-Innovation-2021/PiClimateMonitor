@@ -10,7 +10,7 @@ def init_box():
   box_id = sheets_talker.worksheet.row_count+1
   print(box_id)
   box_sheet_range = 'A' + str(box_id) + ':B' + str(box_id)
-  print(range_to_update)
+  print(box_sheet_range)
   sheets_talker.worksheet.add_rows(1) #add a new row for the box
 
 init_box()
