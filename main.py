@@ -7,8 +7,8 @@ smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 risk = temperature - (temperature * humidity)
 
 def init_box():
-  box_id = sheets_talker.worksheet.row_count+1
-  box_sheet_range = 'A' + str(box_id) + ':B' + str(box_id)
+  box_id = sheets_talker.worksheet.row_count
+  box_sheet_range = 'A' + str(box_id+1) + ':B' + str(box_id+1)  # add one for the column titles
   sheets_talker.worksheet.add_rows(1) #add a new row for the box
   return box_id, box_sheet_range
 
