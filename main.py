@@ -1,18 +1,18 @@
 import sheets_talker
-import adafruit_dht
-from gas_detection import GasDetection
-import board
+#import adafruit_dht
+#from gas_detection import GasDetection
+#import board
 from time import sleep
 
 #MQ-2 Calibration 
-detection = GasDetection()
+#detection = GasDetection()
 
 #Analyze Data
 #Variable values will be replaced by the values from the sensors
 temperature = 0 #Fahrenheit
 humidity = 0 #We want humidity as a decimal
 smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
-dhtDevice = adafruit_dht.DHT22(board.D4)
+#dhtDevice = adafruit_dht.DHT22(board.D4)
 
 def init_box():
   box_id = sheets_talker.worksheet.row_count
@@ -23,12 +23,12 @@ def init_box():
 while True:
   try:
     #Read data from MQ-2
-    ppm = detection.percentage()
-    smoke = ppm[detection.SMOKE_GAS]
+    #ppm = detection.percentage()
+    #smoke = ppm[detection.SMOKE_GAS]
     #Read data from DHT22
-    temperature_c = dhtDevice.temperature
-    temperature = temperature_c * (9 / 5) + 32
-    humidity = dhtDevice.humidity
+    #temperature_c = dhtDevice.temperature
+    #temperature = temperature_c * (9 / 5) + 32
+    #humidity = dhtDevice.humidity
     risk = temperature - (temperature * (humidity / 100))
     box_id, box_sheet_range = init_box()
     print(box_id, box_sheet_range)
@@ -37,7 +37,7 @@ while True:
     #If error occurs, print "error" to spreadsheet and continue with code
     box_id, box_sheet_range = init_box()
     print(box_id, box_sheet_range)
-    sheets_talker.worksheet.update(box_sheet_range, [[str(box_id), "error"]])
+    #sheets_talker.worksheet.update(box_sheet_range, [[str(box_id), "error"]])
     continue
   except Exception as error:
     dhtDevice.exit()
