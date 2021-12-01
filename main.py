@@ -14,8 +14,8 @@ humidity = 0 #We want humidity as a decimal
 smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 #dhtDevice = adafruit_dht.DHT22(board.D4)
 
+box_id = sheets_talker.worksheet.row_count
 def init_box():
-  box_id = sheets_talker.worksheet.row_count
   box_sheet_range = 'A' + str(box_id+1) + ':B' + str(box_id+1)  # add one for the column titles
   sheets_talker.worksheet.add_rows(1) #add a new row for the box
   return box_id, box_sheet_range
