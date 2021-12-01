@@ -1,8 +1,12 @@
 import sheets_talker
 import adafruit_dht
+from gas_detection import GasDetection
 import board
 from time import sleep
- 
+
+#MQ-2 Calibration 
+detection = GasDetection()
+
 #Analyze Data
 #Variable values will be replaced by the values from the sensors
 temperature = 0 #Fahrenheit
@@ -18,6 +22,9 @@ def init_box():
 
 while True:
   try:
+    #Read data from MQ-2
+    ppm = detection.percentage()
+    smoke = ppm[detection.SMOKE_GAS]
     #Read data from DHT22
     temperature_c = dhtDevice.temperature
     temperature = temperature_c * (9 / 5) + 32
