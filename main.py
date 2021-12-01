@@ -16,10 +16,10 @@ smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 
 box_id = sheets_talker.worksheet.row_count
 def init_box():
-  box_id += 1
+  box_id = box_id + 1
   box_sheet_range = 'A' + str(box_id+1) + ':B' + str(box_id+1)  # add one for the column titles
   sheets_talker.worksheet.add_rows(1) #add a new row for the box
-  return box_sheet_range
+  return box_id, box_sheet_range
 
 while True:
   try:
@@ -31,7 +31,7 @@ while True:
     #temperature = temperature_c * (9 / 5) + 32
     #humidity = dhtDevice.humidity
     risk = temperature - (temperature * (humidity / 100))
-    box_sheet_range = init_box()
+    box_id, box_sheet_range = init_box()
     print(box_id, box_sheet_range)
     sheets_talker.worksheet.update(box_sheet_range, [[str(box_id), str(risk)]])
   except RuntimeError as error:
