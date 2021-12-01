@@ -1,5 +1,5 @@
 import sheets_talker
-import Adafruit_DHT as dht
+#import Adafruit_DHT as dht
 from time import sleep
  
 #Analyze Data
@@ -15,10 +15,10 @@ def init_box():
   return box_id, box_sheet_range
 
 #Set data pin for DHT22
-DHT = 4
+#DHT = 4
 while True:
   #Read data from DHT22
-  humidity, temperature = dht.read_retry(dht.DHT22, DHT)
+  #humidity, temperature = dht.read_retry(dht.DHT22, DHT)
   risk = temperature - (temperature * humidity)
   box_id, box_sheet_range = init_box()
   print(box_id, box_sheet_range)
