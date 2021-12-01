@@ -1,5 +1,5 @@
 import sheets_talker
-#import Adafruit_DHT as dht
+import Adafruit_DHT as dht
 from time import sleep
  
 #Analyze Data
@@ -13,12 +13,15 @@ def init_box():
   box_sheet_range = 'A' + str(box_id+1) + ':B' + str(box_id+1)  # add one for the column titles
   sheets_talker.worksheet.add_rows(1) #add a new row for the box
   return box_id, box_sheet_range
+ 
+def getDHT22Data():
+  #Read data from DHT22
+  humidity, temperature = dht.read_retry(dht.DHT22, DHT)
 
 #Set data pin for DHT22
-#DHT = 4
+DHT = 4
 while True:
-  #Read data from DHT22
-  #humidity, temperature = dht.read_retry(dht.DHT22, DHT)
+  getDHT22Data()
   risk = temperature - (temperature * humidity)
   box_id, box_sheet_range = init_box()
   print(box_id, box_sheet_range)
