@@ -9,9 +9,9 @@ detection = GasDetection()
 
 #Analyze Data
 #Variable values will be replaced by the values from the sensors
-temperature = 0 #Fahrenheit
+temperature = 100 #Fahrenheit
 humidity = 0 #We want humidity as a decimal
-smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
+smoke = 500 #Remember that smoke is measured in output on a 3.3V scale
 alert = ""
 dhtDevice = adafruit_dht.DHT22(board.D4)
 box_id = sheets_talker.worksheet.row_count - 1
@@ -26,8 +26,12 @@ while True:
     temperature = temperature_c * (9 / 5) + 32
     humidity = dhtDevice.humidity
     risk = temperature - (temperature * (humidity / 100))
-    if smoke > 200 or risk > 10.5:
-      alert = "ALERT!"
+    if smoke > 200 and risk > 10.5:
+      alert = f"ALERT! Smoke Level is {smoke} \n Fire Risk is {risk}"
+    elif smoke > 200:
+      alert = f"ALERT! Smoke Level is {smoke}"
+    elif risk > 10.5:
+      alert = f"ALERT! Fire Risk is {risk}"
     else:
       alert = "No Alert"
     box_id += 1
@@ -37,9 +41,9 @@ while True:
   except RuntimeError as error:
     #If error occurs, print "error" to spreadsheet and continue with code
     print(box_id, box_sheet_range)
-    sheets_talker.worksheet.update(box_sheet_range, [[str(box_id), "error"]])
+    sheets_talker.worksheet.append_row([str(box_id), "error", "error", "error", "error", "error"])
     continue
   except Exception as error:
     dhtDevice.exit()
     raise error
-  sleep(2)
+  sleep(5) #Takes reading every 5 seconds
