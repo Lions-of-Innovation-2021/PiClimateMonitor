@@ -12,14 +12,9 @@ detection = GasDetection()
 temperature = 0 #Fahrenheit
 humidity = 0 #We want humidity as a decimal
 smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
+alert = ""
 dhtDevice = adafruit_dht.DHT22(board.D4)
-
-
-def init_box():
-  box_id = sheets_talker.worksheet.row_count
-  box_sheet_range = 'A' + str(box_id+1) + ':B' + str(box_id+1)  # add one for the column titles
-  sheets_talker.worksheet.add_rows(1) #add a new row for the box
-  return box_id, box_sheet_range
+box_id = sheets_talker.worksheet.row_count - 1
 
 while True:
   try:
@@ -31,16 +26,20 @@ while True:
     temperature = temperature_c * (9 / 5) + 32
     humidity = dhtDevice.humidity
     risk = temperature - (temperature * (humidity / 100))
-    box_id, box_sheet_range = init_box()
+    if smoke > 200 or risk > 10.5:
+      alert = "ALERT!"
+    else:
+      alert = "No Alert"
+    box_id += 1
+    box_sheet_range = 'A' + str(box_id) + ':B' + str(box_id)  # add one for the column titles
+    sheets_talker.worksheet.append_row([str(box_id), str(risk), str(smoke), str(temperature), str(humidity), alert]) #add a new row for the box
     print(box_id, box_sheet_range)
-    sheets_talker.worksheet.update(box_sheet_range, [[str(box_id), str(risk)]])
   except RuntimeError as error:
     #If error occurs, print "error" to spreadsheet and continue with code
-    box_id, box_sheet_range = init_box()
     print(box_id, box_sheet_range)
     sheets_talker.worksheet.update(box_sheet_range, [[str(box_id), "error"]])
     continue
   except Exception as error:
     dhtDevice.exit()
     raise error
-  sleep(5)
+  sleep(2)
