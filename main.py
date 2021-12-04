@@ -9,9 +9,9 @@ detection = GasDetection()
 
 #Analyze Data
 #Variable values will be replaced by the values from the sensors
-temperature = 100 #Fahrenheit
+temperature = 0 #Fahrenheit
 humidity = 0 #We want humidity as a decimal
-smoke = 500 #Remember that smoke is measured in output on a 3.3V scale
+smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 alert = ""
 dhtDevice = adafruit_dht.DHT22(board.D4)
 box_id = sheets_talker.worksheet.row_count - 1
