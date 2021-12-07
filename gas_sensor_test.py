@@ -1,11 +1,10 @@
 import sys, time, os
-print(os.getcwd())
-import mq
+from mq import MQ
 
 try:
     print("Press CTRL+C to abort.")
-    
-    MQ = mq.MQ()
+
+    mq = MQ()
     while True:
         perc = mq.MQPercentage()
         sys.stdout.write("\r")
