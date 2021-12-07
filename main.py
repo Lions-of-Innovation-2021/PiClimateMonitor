@@ -20,14 +20,18 @@ while True:
     temperature = temperature_c * (9 / 5) + 32
     humidity = dhtDevice.humidity
     risk = temperature - (temperature * (humidity / 100))
-    if smoke > 200 and risk > 10.5:
+    if smoke > 200:
       alert = f"ALERT! Smoke Level is {smoke} \n Fire Risk is {risk}"
-    elif smoke > 200:
-      alert = f"ALERT! Smoke Level is {smoke}"
-    elif risk > 10.5:
-      alert = f"ALERT! Fire Risk is {risk}"
-    else:
-      alert = "No Alert"
+    elif risk < 10.5:
+      alert = "Fire Risk is very low"
+    elif risk > 10.5 and risk < 40:
+      alert = "Fire Risk is low"
+    elif risk > 40 and risk < 50:
+      alert = "Fire Risk is medium"
+    elif risk > 50 and risk < 70:
+      alert = "Fire Risk is high"
+    elif risk > 70:
+      alert = "Fire Risk is very high"
     box_id += 1
     box_sheet_range = 'A' + str(box_id) + ':B' + str(box_id)  # add one for the column titles
     sheets_talker.worksheet.append_row([str(box_id), str(risk), str(smoke), str(temperature), str(humidity), alert]) #add a new row for the box
