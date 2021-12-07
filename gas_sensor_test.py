@@ -1,5 +1,6 @@
-import sys, time
+import sys, time, os
 sys.path.append('/home/PiClimateMonitor')
+print(os.getcwed())
 from gas_sensor import mq as mq
 
 try:
