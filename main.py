@@ -19,11 +19,11 @@ while True:
   try:
     #Read data from DHT22
     temperature_c = dhtDevice.temperature
-    temperature = temperature_c * (9 / 5) + 32
+    temperature_f = temperature_c * (9 / 5) + 32
     humidity = dhtDevice.humidity
     perc = mq.MQPercentage() #perc["GAS_LPG"] perc["CO"] perc["SMOKE"]
     smoke = perc["SMOKE"]
-    risk = temperature - (temperature * (humidity / 100))
+    risk = temperature_f - (temperature_f * (humidity / 100))
     if smoke > 200:
       alert = f"ALERT! Smoke Level is {smoke} \n Fire Risk is {risk}"
     elif risk < 10.5:
@@ -38,8 +38,9 @@ while True:
       alert = "Fire Risk is very high"
     box_id += 1
     box_sheet_range = 'A' + str(box_id) + ':B' + str(box_id)  # add one for the column titles
-    sheets_talker.worksheet.append_row([str(box_id), str(risk), str(smoke), str(temperature), str(humidity), alert]) #add a new row for the box
-    print(box_id, box_sheet_range)
+    message = [str(box_id), str(risk), str(smoke), str(temperature_f), str(humidity), alert]
+    sheets_talker.worksheet.append_row(message) #add a new row for the box
+    print(box_id, box_sheet_range, ":", message)
   except RuntimeError as error:
     #If error occurs, print "error" to spreadsheet and continue with code
     print(box_id, box_sheet_range)
