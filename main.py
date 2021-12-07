@@ -13,7 +13,7 @@ smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 alert = ""
 dhtDevice = adafruit_dht.DHT22(board.D4)
 mq = MQ()
-box_id = sheets_talker.worksheet.row_count - 1
+row = sheets_talker.worksheet.row_count - 1
 
 while True:
   try:
@@ -36,15 +36,18 @@ while True:
       alert = "Fire Risk is high"
     elif risk > 70:
       alert = "Fire Risk is very high"
-    box_id += 1
-    box_sheet_range = 'A' + str(box_id) + ':B' + str(box_id)  # add one for the column titles
-    message = [str(box_id), str(risk), str(smoke), str(temperature_f), str(humidity), alert]
+    
+    row += 1
+    sheet_range = 'A' + str(row) + ':B' + str(row)  # add one for the column titles
+
+    message = [str(row), str(risk), str(smoke), str(temperature_f), str(humidity), alert]
     sheets_talker.worksheet.append_row(message) #add a new row for the box
-    print(box_id, box_sheet_range, ":", message)
+    print(row, ":", message)
+    
   except RuntimeError as error:
     #If error occurs, print "error" to spreadsheet and continue with code
-    print(box_id, box_sheet_range)
-    sheets_talker.worksheet.append_row([str(box_id), "error", "error", "error", "error", "error"])
+    print(row, "Error: ", error)
+    sheets_talker.worksheet.append_row([str(row), "error", "error", "error", "error", "error"])
     continue
   except Exception as error:
     dhtDevice.exit()
