@@ -1,0 +1,3 @@
+[submodule "Raspberry-Pi-Gas-Sensor-MQ"]
+	path = Raspberry-Pi-Gas-Sensor-MQ
+	url = https://github.com/tutRPi/Raspberry-Pi-Gas-Sensor-MQ
