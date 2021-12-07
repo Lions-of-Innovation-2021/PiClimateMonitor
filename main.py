@@ -2,6 +2,7 @@ import sheets_talker
 import adafruit_dht
 import board
 from time import sleep
+from mq import MQ
 
 
 #Analyze Data
@@ -11,6 +12,7 @@ humidity = 0 #We want humidity as a decimal
 smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 alert = ""
 dhtDevice = adafruit_dht.DHT22(board.D4)
+mq = MQ()
 box_id = sheets_talker.worksheet.row_count - 1
 
 while True:
@@ -19,6 +21,8 @@ while True:
     temperature_c = dhtDevice.temperature
     temperature = temperature_c * (9 / 5) + 32
     humidity = dhtDevice.humidity
+    perc = mq.MQPercentage() #perc["GAS_LPG"] perc["CO"] perc["SMOKE"]
+    smoke = perc["SMOKE"]
     risk = temperature - (temperature * (humidity / 100))
     if smoke > 200:
       alert = f"ALERT! Smoke Level is {smoke} \n Fire Risk is {risk}"

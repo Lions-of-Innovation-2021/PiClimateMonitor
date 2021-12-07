@@ -17,7 +17,6 @@ class MCP3008:
 
         adc = self.spi.xfer2([cmd1, cmd2, 0])
         data = ((adc[1] & 15) << 8) + adc[2]
-        print('DATA:', data)
         return data
             
     def close(self):
