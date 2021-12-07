@@ -12,7 +12,7 @@ humidity = 0 #We want humidity as a decimal
 smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 alert = ""
 dhtDevice = adafruit_dht.DHT22(board.D4)
-mq = MQ()
+mq = MQ(analogPin=0)
 
 row = sheets_talker.worksheet.row_count - 1
 
