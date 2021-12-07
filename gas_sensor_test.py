@@ -1,10 +1,11 @@
 import sys, time
+sys.path.append('/home/PiClimateMonitor')
 import gas_sensor.mq as mq
 
 try:
     print("Press CTRL+C to abort.")
     
-    MQ = mq.MQ();
+    MQ = mq.MQ()
     while True:
         perc = mq.MQPercentage()
         sys.stdout.write("\r")
