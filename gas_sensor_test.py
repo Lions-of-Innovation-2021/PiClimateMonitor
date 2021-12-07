@@ -1,7 +1,6 @@
 import sys, time, os
-sys.path.append('/home/PiClimateMonitor')
 print(os.getcwd())
-from gas_sensor import mq as mq
+import mq
 
 try:
     print("Press CTRL+C to abort.")
