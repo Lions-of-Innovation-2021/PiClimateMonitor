@@ -2,7 +2,8 @@ import sheets_talker
 import adafruit_dht
 import board
 from time import sleep
-from mq import MQ
+# from mq import MQ
+from mq2 import MQ
 
 
 #Analyze Data
@@ -12,7 +13,8 @@ humidity = 0 #We want humidity as a decimal
 smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 alert = ""
 dhtDevice = adafruit_dht.DHT22(board.D4)
-mq = MQ(analogPin=0)
+# mq = MQ(analogPin=0)
+mq = MQ()
 
 row = sheets_talker.worksheet.row_count - 1
 
@@ -22,10 +24,11 @@ while True:
     temperature_c = dhtDevice.temperature
     temperature_f = temperature_c * (9 / 5) + 32
     humidity = dhtDevice.humidity
-    perc = mq.MQPercentage() #perc["GAS_LPG"] perc["CO"] perc["SMOKE"]
-    smoke = perc["SMOKE"]
+    # perc = mq.MQPercentage() #perc["GAS_LPG"] perc["CO"] perc["SMOKE"]
+    # smoke = perc["SMOKE"]
+    smoke = mq.multisample_read()
     risk = temperature_f - (temperature_f * (humidity / 100))
-    if smoke > 200:
+    if smoke > 2:
       alert = f"ALERT! Smoke Level is {smoke} \n Fire Risk is {risk}"
     elif risk < 10.5:
       alert = "Fire Risk is very low"
