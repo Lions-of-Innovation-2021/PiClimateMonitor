@@ -40,7 +40,7 @@ while True:
     
     row += 1
 
-    message = [str(row), str(risk), str(smoke), str(temperature_f), str(humidity), alert]
+    message = [row, risk, smoke, temperature_f, humidity, alert]
     sheets_talker.worksheet.append_row(message) #add a new row for the box
     print(row, ":", message)
 
