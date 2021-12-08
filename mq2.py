@@ -38,7 +38,7 @@ class MQ():
         # create the cs (chip select)
         cs = digitalio.DigitalInOut(board.D5)
         # create the mcp object
-        self.mcp = MCP.MCP3008(self.spi, self.cs)
+        self.mcp = MCP.MCP3008(spi, cs)
 
         # create an analog input channel on pin 0
         self.chan = AnalogIn(self.mcp, MCP.P0)
