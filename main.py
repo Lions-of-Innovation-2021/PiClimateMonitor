@@ -47,7 +47,7 @@ while True:
     
     row += 1
 
-    message = [row, smoke, risk, temperature_f, humidity, alert]
+    message = ["=NOW()", smoke, risk, temperature_f, humidity, alert] #'=NOW()' gets timestamp
     sheets_talker.worksheet.append_row(message) #add a new row for the box
     print(row, ":", message)
 
