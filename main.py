@@ -52,4 +52,4 @@ while True:
   except Exception as error:
     dhtDevice.exit()
     raise error
-  sleep(5) #Takes reading every 5 seconds
+  sleep(0.5) #Takes reading every 5 seconds
