@@ -40,7 +40,7 @@ while True:
     elif risk > 70:
       riskLevel = "Very High"
       
-    if smoke > 200:
+    if smoke > 10:
       alert = f"Smoke is Present \n {riskLevel}"
     else:
       alert = riskLevel
