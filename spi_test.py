@@ -21,7 +21,9 @@ chan = AnalogIn(mcp, MCP.P0)
 try:
     while True:
         sys.stdout.write('\r')
-        sys.stdout.write('Raw ADC Value: ' + str(chan.value) + '\n' + 'ADC Voltage: ' + str(chan.voltage) + 'V')
+        sys.stdout.write("\033[K")
+        # sys.stdout.write('Raw ADC Value: ' + str(chan.value) + '\n' + 'ADC Voltage: ' + str(chan.voltage) + 'V')
+        sys.stdout.write('ADC Voltage: ' + str(chan.voltage) + 'V')
         sys.stdout.flush()
         # print('Raw ADC Value: ', chan.value)
         # print('ADC Voltage: ' + str(chan.voltage) + 'V')
