@@ -47,14 +47,14 @@ while True:
     
     row += 1
 
-    message = [row, risk, smoke, temperature_f, humidity, alert]
+    message = [row, smoke, risk, temperature_f, humidity, alert]
     sheets_talker.worksheet.append_row(message) #add a new row for the box
     print(row, ":", message)
 
   except RuntimeError as error:
     #If error occurs, print "error" to spreadsheet and continue with code
     print(row, "Error: ", error)
-    sheets_talker.worksheet.append_row([str(row), "error", "error", "error", "error", "error"])
+    sheets_talker.worksheet.append_row([row, "error", "error", "error", "error", "error"])
     continue
   except Exception as error:
     dhtDevice.exit()
