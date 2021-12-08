@@ -5,13 +5,13 @@ from time import sleep
 # from mq import MQ
 from mq2 import MQ
 
-
 #Analyze Data
 #Variable values will be replaced by the values from the sensors
 temperature = 0 #Fahrenheit
 humidity = 0 #We want humidity as a decimal
 smoke = 0 #Remember that smoke is measured in output on a 3.3V scale
 alert = ""
+riskLevel = ""
 dhtDevice = adafruit_dht.DHT22(board.D4)
 # mq = MQ(analogPin=0)
 mq = MQ()
@@ -28,18 +28,22 @@ while True:
     # smoke = perc["SMOKE"]
     smoke = mq.multisample_read()
     risk = temperature_f - (temperature_f * (humidity / 100))
-    if smoke > 2:
-      alert = f"ALERT! Smoke Level is {smoke} \n Fire Risk is {risk}"
-    elif risk < 10.5:
-      alert = "Fire Risk is very low"
+      
+    if risk < 10.5:
+      riskLevel = "Very Low"
     elif risk > 10.5 and risk < 40:
-      alert = "Fire Risk is low"
+      riskLevel = "Low"
     elif risk > 40 and risk < 50:
-      alert = "Fire Risk is medium"
+      riskLevel = "Medium"
     elif risk > 50 and risk < 70:
-      alert = "Fire Risk is high"
+      riskLevel = "High"
     elif risk > 70:
-      alert = "Fire Risk is very high"
+      riskLevel = "Very High"
+      
+    if smoke > 200:
+      alert = f"Smoke is Present \n {riskLevel}"
+    else:
+      alert = riskLevel
     
     row += 1
 
