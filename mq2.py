@@ -43,7 +43,9 @@ class MQ():
         # create an analog input channel on pin 0
         self.chan = AnalogIn(self.mcp, MCP.P0)
 
+        print("Calibrating MQ-2 baseline...")
         self.baseline = self.baseline_calibrate()
+        print("Calibrated. Baseline=%f" % self.baseline)
                 
     def read(self):
         return self.chan.voltage/3.3
@@ -57,7 +59,7 @@ class MQ():
 
         rs = rs/self.READ_SAMPLE_TIMES
 
-        return (rs/self.baseline)*100 #percent change of read from baseline
+        return (rs/self.baseline -1)*100 #percent change of read from baseline
     
     def baseline_calibrate(self):
         val = 0.0
