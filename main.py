@@ -33,9 +33,9 @@ while True:
       riskLevel = "Very Low"
     elif risk > 10.5 and risk < 40:
       riskLevel = "Low"
-    elif risk > 40 and risk < 50:
+    elif risk > 40 and risk < 63:
       riskLevel = "Medium"
-    elif risk > 50 and risk < 70:
+    elif risk > 63 and risk < 70:
       riskLevel = "High"
     elif risk > 70:
       riskLevel = "Very High"
