@@ -5,18 +5,19 @@ def receive_data(client_sock):
     data = client_sock.recv(1024)
     print("Received: [%s]" % data)
 
-def main():
+def host_server():
     subprocess.call(['sudo', 'hciconfig', 'hci0', 'piscan'])
 
     print("Hosting Pi bluetooth server...")
     server_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-
-    port = 1
+    port = bluetooth.get_available_port(bluetooth.RFCOMM)
     server_sock.bind(("",port))
-
-    # begin listening for connection
+    server_sock.listen(1)   # 1 or port? need documentation
     print("Lisetning to port [%i]" % port)
-    server_sock.listen(port)   # can't find documentation on it
+
+    #adv service:
+    uuid = "36263756-593d-11ec-bae7-5f350ed39ff8"   # randomly generated, consistent in Climate monitor code
+    bluetooth.advertise_service(server_sock, "Climate_Monitor", uuid)
 
     # wait for a connection from client
     client_sock, address = server_sock.accept()
@@ -32,4 +33,4 @@ def main():
     client_sock.close()
     server_sock.close()
 
-main()
+host_server()

@@ -1,37 +1,62 @@
 import bluetooth
 import time
+import sys
 
 PI_NAME = "MIMS_STEM_RasPi"
-PI_ADDRESS = None
+PI_SERVICE_UUID = "36263756-593d-11ec-bae7-5f350ed39ff8"
 
-def find_pi():
-    global PI_ADDRESS
-    nearby_devices = bluetooth.discover_devices()
-    for bdaddr in nearby_devices:
-        bdname = bluetooth.lookup_name(bdaddr)
-        print("Found:", bdname)
-        if bdname == PI_NAME:
-            PI_ADDRESS = bdaddr
-            break
+pi_address = None
+pi_sock = None
 
-def main():
-    print("Searching for Pi Bluetooth...")
-    find_pi()
+# def find_pi():
+#     global pi_address
+#     nearby_devices = bluetooth.discover_devices()
+#     for bdaddr in nearby_devices:
+#         bdname = bluetooth.lookup_name(bdaddr)
+#         print("Found:", bdname)
+#         if bdname == PI_NAME:
+#             pi_address = bdaddr
+#             break
 
-    if PI_ADDRESS:
-        print("Found Raspberry Pi")
+# def connect_to_pi():
+#     global pi_sock
+#     print("Searching for Pi Bluetooth...")
+#     find_pi()
 
-        port = 1
+#     if pi_address:
+#         print("Found Raspberry Pi")
 
-        sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-        sock.connect((PI_ADDRESS, port))
+#         port = 1
 
-        sock.send("test data!")
-        time.sleep(5)
-        sock.send("test data #2!")
+#         pi_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+#         pi_sock.connect((pi_address, port))
+#     else:
+#         raise Exception("Raspberry PI not found!")
 
-        # sock.close()
-    else:
-        raise Exception("Raspberry PI not found!")
+def connect_to_pi():
+    service_matches = bluetooth.find_service(uuid = PI_SERVICE_UUID)
 
-main()
+    if len(service_matches) == 0:
+        print("Failed to find Climate Monitor service.")
+        sys.exit(0)
+
+    first_match = service_matches[0]
+    name = first_match["name"]
+    host = first_match["host"]
+    port = first_match["port"]
+
+    print(f"Connecting to \"{name}\" on {host}")
+
+    pi_sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+    pi_sock.connect((host, port))
+
+def send_data():
+        pi_sock.send("test data!")
+
+def close_connection():
+    pi_sock.close()
+
+connect_to_pi()
+while True:
+    send_data("Test data")
+    time.sleep(1)
