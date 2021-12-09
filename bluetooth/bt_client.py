@@ -7,6 +7,7 @@ def find_pi():
     global PI_ADDRESS
     nearby_devices = bluetooth.discover_devices()
     for bdaddr in nearby_devices:
+        print(bdaddr)
         bdname = bluetooth.lookup_name(bdaddr)
         print("Found:", bdname)
         if bdname == PI_NAME:
@@ -16,7 +17,7 @@ def find_pi():
 def main():
     print("Searching for Pi Bluetooth...")
     find_pi()
-    
+
     if PI_ADDRESS:
         print("Found Raspberry Pi")
 
