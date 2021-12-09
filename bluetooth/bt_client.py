@@ -1,6 +1,7 @@
 import bluetooth
 import time
 import sys
+import sheets_talker
 
 PI_NAME = "MIMS_STEM_RasPi"
 PI_SERVICE_UUID = "36263756-593d-11ec-bae7-5f350ed39ff8"
@@ -62,4 +63,8 @@ connect_to_pi()
 while True:
     data = send_read_request()
     print(f"Data read: {data}")
+
+    msg = ["=NOW()", data.Smoke, data.Risk, data.Temperature, data.Humidity, data.Alert]
+    sheets_talker.worksheet.append_row(msg, value_input_option='USER_ENTERED') #add a new row for the box
+
     time.sleep(1)
