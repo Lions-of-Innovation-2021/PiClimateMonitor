@@ -16,8 +16,8 @@ def host_server():
     print("Lisetning to port [%i]" % port)
 
     #adv service:
-    uuid = "36263756-593d-11ec-bae7-5f350ed39ff8"   # randomly generated, consistent in Climate monitor code
-    bluetooth.advertise_service(server_sock, "Climate_Monitor", uuid)
+    # uuid = "36263756-593d-11ec-bae7-5f350ed39ff8"   # randomly generated, consistent in Climate monitor code
+    # bluetooth.advertise_service(server_sock, "Climate_Monitor", uuid)
 
     # wait for a connection from client
     client_sock, address = server_sock.accept()
