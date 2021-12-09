@@ -10,7 +10,7 @@ def host_server():
 
     print("Hosting Pi bluetooth server...")
     server_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-    port = bluetooth.get_available_port(bluetooth.RFCOMM)
+    port = 0    # automatically find a port
     server_sock.bind(("",port))
     server_sock.listen(1)   # 1 or port? need documentation
     print("Lisetning to port [%i]" % port)
