@@ -24,6 +24,7 @@ def host_server(get_data_reading):
     # receive data
     while True:
         msg = client_sock.recv(1024)
+        print("Recieved message:", msg)
         if len(msg) > 0:
             command = msg[0]
             if command == "read":
