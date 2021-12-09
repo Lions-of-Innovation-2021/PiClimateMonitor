@@ -1,4 +1,5 @@
 import bluetooth
+import time
 
 PI_NAME = "MIMS_STEM_RasPi"
 PI_ADDRESS = None
@@ -26,8 +27,10 @@ def main():
         sock.connect((PI_ADDRESS, port))
 
         sock.send("test data!")
+        time.sleep(5)
+        sock.send("test data #2!")
 
-        sock.close()
+        # sock.close()
     else:
         raise Exception("Raspberry PI not found!")
 
