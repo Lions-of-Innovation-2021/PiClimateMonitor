@@ -54,7 +54,8 @@ while True:
   except RuntimeError as error:
     #If error occurs, print "error" to spreadsheet and continue with code
     print(row, "Error: ", error)
-    sheets_talker.worksheet.append_row([row, "error", "error", "error", "error", "error"])
+    errorMessage = ["=NOW()", "error", "error", "error", "error", "error"]
+    sheets_talker.worksheet.append_row(errorMessage, value_input_option='USER_ENTERED')
     continue
   except Exception as error:
     dhtDevice.exit()
