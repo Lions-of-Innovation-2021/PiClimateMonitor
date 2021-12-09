@@ -1,16 +1,12 @@
 import bluetooth
 import subprocess
 
-def receive_data(client_sock):
-    data = client_sock.recv(1024)
-    print("Received: [%s]" % data)
-
-def host_server():
+def host_server(get_data_reading):
     subprocess.call(['sudo', 'hciconfig', 'hci0', 'piscan'])
 
     print("Hosting Pi bluetooth server...")
     server_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-    port = 0    # automatically find a port
+    port = 1    # automatically find a port
     server_sock.bind(("",port))
     server_sock.listen(1)   # 1 or port? need documentation
     print("Lisetning to port [%i]" % port)
@@ -27,10 +23,11 @@ def host_server():
 
     # receive data
     while True:
-        receive_data(client_sock)
-    
+        msg = client_sock.recv(1024)
+        if len(msg) > 0:
+            command = msg[0]
+            if command == "read":
+                client_sock.send(get_data_reading())
     # cleanup
     client_sock.close()
     server_sock.close()
-
-host_server()

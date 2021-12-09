@@ -1,7 +1,6 @@
 # adapted from https://github.com/tutRPi/Raspberry-Pi-Gas-Sensor-MQ/blob/master/mq.py
 
 import math
-from MCP3008 import MCP3008
 import busio
 import digitalio
 import board

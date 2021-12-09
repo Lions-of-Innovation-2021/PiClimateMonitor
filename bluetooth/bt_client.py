@@ -50,13 +50,16 @@ def connect_to_pi():
 #     pi_sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 #     pi_sock.connect((host, port))
 
-def send_data():
-        pi_sock.send("test data!")
-
+def send_read_request():
+    pi_sock.send("read")
+    data = pi_sock.recv(1024)
+    return data
+    
 def close_connection():
     pi_sock.close()
 
 connect_to_pi()
 while True:
-    send_data("Test data")
+    data = send_read_request()
+    print(f"Data read: {data}")
     time.sleep(1)
