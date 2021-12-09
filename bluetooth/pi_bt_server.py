@@ -20,8 +20,7 @@ def main():
 
     # wait for a connection from client
     client_sock, address = server_sock.accept()
-    print(address, type(address))
-    print(address[1])
+    address, port = address[0], address[1]
     device_name = bluetooth.lookup_name(address)
     print(f"Accepted connection from {device_name} ({address})")
 
