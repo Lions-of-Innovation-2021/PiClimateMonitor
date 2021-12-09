@@ -19,8 +19,9 @@ def main():
     server_sock.listen(port)   # can't find documentation on it
 
     # wait for a connection from client
-    client_sock, address, _ = server_sock.accept()
-    print(address)
+    client_sock, address = server_sock.accept()
+    print(address, type(address))
+    print(address[1])
     device_name = bluetooth.lookup_name(address)
     print(f"Accepted connection from {device_name} ({address})")
 
