@@ -22,7 +22,7 @@ def host_server(get_data_reading):
 
     # receive data
     while True:
-        try:
+        # try:
             if client_sock:
                 msg = client_sock.recv(1024)
                 print("Recieved message:", msg)
@@ -37,14 +37,14 @@ def host_server(get_data_reading):
                 address, port = address[0], address[1]
                 device_name = bluetooth.lookup_name(address)
                 print(f"Accepted connection from {device_name} ({address})")
-        except KeyboardInterrupt:
-            break
-        except bluetooth.btcommon.BluetoothError as bterror:
-            client_sock = None
-            address = None
-            print("Disconnected from Bluetooth:", bterror)
-        except:
-            print("Error processing command.")
+        # except KeyboardInterrupt:
+        #     break
+        # except bluetooth.btcommon.BluetoothError as bterror:
+        #     client_sock = None
+        #     address = None
+        #     print("Disconnected from Bluetooth:", bterror)
+        # except:
+        #     print("Error processing command.")
             
     
     # cleanup
