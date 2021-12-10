@@ -1,6 +1,8 @@
 import bluetooth
 import subprocess
 
+from bluetooth.btcommon import BluetoothError
+
 def host_server(get_data_reading):
     subprocess.call(['sudo', 'hciconfig', 'hci0', 'piscan'])
 
@@ -15,26 +17,31 @@ def host_server(get_data_reading):
     # uuid = "36263756-593d-11ec-bae7-5f350ed39ff8"   # randomly generated, consistent in Climate monitor code
     # bluetooth.advertise_service(server_sock, "Climate_Monitor", uuid)
 
-    # wait for a connection from client
-    client_sock, address = server_sock.accept()
-    address, port = address[0], address[1]
-    device_name = bluetooth.lookup_name(address)
-    print(f"Accepted connection from {device_name} ({address})")
-
     # receive data
     while True:
         try:
-            msg = client_sock.recv(1024)
-            print("Recieved message:", msg)
-            if msg and len(msg) > 0:
-                command = msg.decode("utf-8") 
-                print("Command:", command)
-                if command == "read":
-                    client_sock.send(get_data_reading())
-        except ValueError:
-            print("Error processing command.")
+            if client_sock:
+                msg = client_sock.recv(1024)
+                print("Recieved message:", msg)
+                if msg and len(msg) > 0:
+                    command = msg.decode("utf-8") 
+                    print("Command:", command)
+                    if command == "read":
+                        client_sock.send(get_data_reading())
+            else:
+                # wait for a connection from client
+                client_sock, address = server_sock.accept()
+                address, port = address[0], address[1]
+                device_name = bluetooth.lookup_name(address)
+                print(f"Accepted connection from {device_name} ({address})")
         except KeyboardInterrupt:
             break
+        except bluetooth.btcommon.BluetoothError:
+            client_sock = None
+            address = None
+        except:
+            print("Error processing command.")
+            
     
     # cleanup
     client_sock.close()
