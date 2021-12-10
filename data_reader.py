@@ -58,7 +58,7 @@ class DataReader():
                 "Risk": risk,
                 "Alert": alert
             }
-        except RuntimeError as error:
+        except (RuntimeError, OverflowError) as error:
             #If error occurs, return "error" message
             msg = "Error"
         except Exception as error:
