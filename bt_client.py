@@ -65,6 +65,7 @@ while True:
         print("Sending read request...")
         data = send_read_request()
         data = data.decode('utf-8')
+        print(data)
         print(f"Data read: {data}")
 
         # publish data to google sheets
