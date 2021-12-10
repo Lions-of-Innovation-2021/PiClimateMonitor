@@ -17,6 +17,9 @@ def host_server(get_data_reading):
     # uuid = "36263756-593d-11ec-bae7-5f350ed39ff8"   # randomly generated, consistent in Climate monitor code
     # bluetooth.advertise_service(server_sock, "Climate_Monitor", uuid)
 
+    global client_sock
+    global address
+
     # receive data
     while True:
         try:
@@ -36,9 +39,10 @@ def host_server(get_data_reading):
                 print(f"Accepted connection from {device_name} ({address})")
         except KeyboardInterrupt:
             break
-        except bluetooth.btcommon.BluetoothError:
+        except bluetooth.btcommon.BluetoothError as bterror:
             client_sock = None
             address = None
+            print("Disconnected from Bluetooth:", bterror)
         except:
             print("Error processing command.")
             
