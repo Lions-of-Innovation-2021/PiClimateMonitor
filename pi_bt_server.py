@@ -43,7 +43,7 @@ def host_server(get_data_reading):
             client_sock = None
             address = None
             print("Disconnected from Bluetooth:", bterror)
-        except any as error:
+        except Exception as error:
             print("Error processing command:", error)
             
     
