@@ -61,11 +61,15 @@ def close_connection():
 
 connect_to_pi()
 while True:
-    print("Sending read request...")
-    data = send_read_request()
-    print(f"Data read: {data}")
+    try:
+        print("Sending read request...")
+        data = send_read_request()
+        print(f"Data read: {data}")
 
-    msg = ["=NOW()", data.Smoke, data.Risk, data.Temperature, data.Humidity, data.Alert]
-    sheets_talker.worksheet.append_row(msg, value_input_option='USER_ENTERED') #add a new row for the box
+        # publish data to google sheets
+        msg = ["=NOW()", data.Smoke, data.Risk, data.Temperature, data.Humidity, data.Alert]
+        sheets_talker.worksheet.append_row(msg, value_input_option='USER_ENTERED') #add a new row for the box
+    except:
+        print("Error fetching and publishing data.")
 
     time.sleep(1)
