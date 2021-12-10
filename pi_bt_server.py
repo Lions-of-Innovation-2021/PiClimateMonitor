@@ -17,14 +17,12 @@ def host_server(get_data_reading):
     # uuid = "36263756-593d-11ec-bae7-5f350ed39ff8"   # randomly generated, consistent in Climate monitor code
     # bluetooth.advertise_service(server_sock, "Climate_Monitor", uuid)
 
-    global client_sock
-    global address
+    client_sock = None
+    address = None
 
     # receive data
     while True:
         # try:
-            global client_sock
-            global address
             if client_sock:
                 msg = client_sock.recv(1024)
                 print("Recieved message:", msg)
