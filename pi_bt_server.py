@@ -27,6 +27,7 @@ def host_server(get_data_reading):
             msg = client_sock.recv(1024)
             print("Recieved message:", msg)
             if len(msg) > 0:
+                print(msg, msg[0])
                 command = msg[0].decode("utf-8") 
                 print("Command:", command)
                 if command == "read":
