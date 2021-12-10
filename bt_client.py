@@ -69,7 +69,9 @@ while True:
         # publish data to google sheets
         msg = ["=NOW()", data.Smoke, data.Risk, data.Temperature, data.Humidity, data.Alert]
         sheets_talker.worksheet.append_row(msg, value_input_option='USER_ENTERED') #add a new row for the box
-    except:
+    except ValueError:
         print("Error fetching and publishing data.")
+    except KeyboardInterrupt:
+        break
 
     time.sleep(1)
