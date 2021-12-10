@@ -23,6 +23,8 @@ def host_server(get_data_reading):
     # receive data
     while True:
         # try:
+            global client_sock
+            global address
             if client_sock:
                 msg = client_sock.recv(1024)
                 print("Recieved message:", msg)
