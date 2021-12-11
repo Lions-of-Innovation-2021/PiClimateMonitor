@@ -2,6 +2,9 @@
 
 # Reads sensor data on the Raspberry Pi
 
+import sys
+print(sys.path)
+
 import adafruit_dht
 import board
 from time import sleep
