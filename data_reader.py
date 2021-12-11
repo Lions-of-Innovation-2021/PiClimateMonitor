@@ -48,7 +48,7 @@ class DataReader():
             # Formatting, calculations
             temperature_f = temperature_c * (9 / 5) + 32
             risk = temperature_f - (temperature_f * (humidity / 100))
-            alert = get_alert_msg()
+            alert = get_alert_msg(smoke, risk)
 
             # Final return data
             msg = {
