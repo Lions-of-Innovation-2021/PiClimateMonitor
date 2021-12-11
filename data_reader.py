@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/lib/python3/dist-packages
 
 # Reads sensor data on the Raspberry Pi
 

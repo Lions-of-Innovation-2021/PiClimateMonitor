@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/lib/python3/dist-packages
 
 import bluetooth
 import subprocess

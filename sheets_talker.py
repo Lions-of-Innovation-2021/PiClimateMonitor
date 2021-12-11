@@ -1,3 +1,5 @@
+#! /usr/lib/python3/dist-packages
+
 # Talks to google sheets
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials

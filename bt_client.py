@@ -1,5 +1,3 @@
-#! /usr/bin/env python
-
 import bluetooth
 import time
 import sys
