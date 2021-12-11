@@ -1,6 +1,5 @@
 import bluetooth
 import time
-import sys
 import sheets_talker
 import json
 

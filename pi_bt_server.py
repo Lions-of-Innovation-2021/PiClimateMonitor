@@ -1,4 +1,6 @@
 #! /home/pi/.local/lib/python3.7/site-packages
+import sys
+sys.path.append('/home/pi/.local/lib/python3.7/site-packages')
 
 import bluetooth
 import subprocess

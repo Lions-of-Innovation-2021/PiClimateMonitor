@@ -1,5 +1,8 @@
 #! /home/pi/.local/lib/python3.7/site-packages
 
+import sys
+sys.path.append('/home/pi/.local/lib/python3.7/site-packages')
+
 # adapted from https://github.com/tutRPi/Raspberry-Pi-Gas-Sensor-MQ/blob/master/mq.py
 
 import math
@@ -9,7 +12,6 @@ import board
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 import time
-import sys
 
 class MQ():
 

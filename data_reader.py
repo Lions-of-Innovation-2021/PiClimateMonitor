@@ -3,7 +3,7 @@
 # Reads sensor data on the Raspberry Pi
 
 import sys
-print(sys.path)
+sys.path.append('/home/pi/.local/lib/python3.7/site-packages')
 
 import adafruit_dht
 import board
