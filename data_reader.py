@@ -58,10 +58,13 @@ class DataReader():
                 "Risk": risk,
                 "Alert": alert
             }
-        except (RuntimeError, OverflowError) as error:
+        except RuntimeError as error:
             #If error occurs, return "error" message
             msg = "Error"
             print("Read Error:", error)
+        except OverflowError as error:
+            # This happens when the DHT is wired incorrectly. Found this out the hard way.
+            print("Fatal DHT error")
             raise error
         except Exception as error:
             # Fatal error with dht device
