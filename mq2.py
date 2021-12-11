@@ -1,4 +1,4 @@
-#! /usr/lib/python3/dist-packages
+#! /home/pi/.local/lib/python3.7/site-packages
 
 # adapted from https://github.com/tutRPi/Raspberry-Pi-Gas-Sensor-MQ/blob/master/mq.py
 

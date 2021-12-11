@@ -1,4 +1,4 @@
-#! /usr/lib/python3/dist-packages
+#! /home/pi/.local/lib/python3.7/site-packages
 
 import bluetooth
 import subprocess

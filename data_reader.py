@@ -1,4 +1,4 @@
-#! /usr/lib/python3/dist-packages
+#! /home/pi/.local/lib/python3.7/site-packages
 
 # Reads sensor data on the Raspberry Pi
 
