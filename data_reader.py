@@ -61,7 +61,8 @@ class DataReader():
         except (RuntimeError, OverflowError) as error:
             #If error occurs, return "error" message
             msg = "Error"
-            print("Error:", error)
+            print("Read Error:", error)
+            raise error
         except Exception as error:
             # Fatal error with dht device
             self.dhtDevice.exit()

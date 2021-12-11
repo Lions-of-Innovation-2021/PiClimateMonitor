@@ -25,7 +25,6 @@ def host_server(get_data_reading):
         try:
             if client_sock:
                 msg = client_sock.recv(1024)
-                print("Recieved message:", msg)
                 if msg and len(msg) > 0:
                     command = msg.decode("utf-8") 
                     print("Command:", command)
@@ -45,6 +44,7 @@ def host_server(get_data_reading):
             print("Disconnected from Bluetooth:", bterror)
         except Exception as error:
             print("Error processing command:", error)
+            raise error
             
     
     # cleanup
