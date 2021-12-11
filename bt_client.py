@@ -2,6 +2,7 @@ import bluetooth
 import time
 import sys
 import sheets_talker
+import json
 
 PI_NAME = "MIMS_STEM_RasPi"
 PI_SERVICE_UUID = "36263756-593d-11ec-bae7-5f350ed39ff8"
@@ -64,7 +65,7 @@ while True:
     try:
         print("Sending read request...")
         data = send_read_request()
-        data = data.decode('utf-8')
+        data = json.loads(data.decode('utf-8'))
         print(data)
         print(f"Data read: {data}")
 

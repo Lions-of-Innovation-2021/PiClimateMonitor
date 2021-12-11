@@ -1,5 +1,6 @@
 import bluetooth
 import subprocess
+import json
 
 from bluetooth.btcommon import BluetoothError
 
@@ -29,7 +30,9 @@ def host_server(get_data_reading):
                     command = msg.decode("utf-8") 
                     print("Command:", command)
                     if command == "read":
-                        client_sock.send(get_data_reading())
+                        data = get_data_reading()
+                        byteDataEncoding = json.dumps(data).encode('utf-8')
+                        client_sock.send(byteDataEncoding)
             else:
                 # wait for a connection from client
                 client_sock, address = server_sock.accept()
