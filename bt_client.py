@@ -51,6 +51,8 @@ def connect_to_pi():
 #     pi_sock = bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 #     pi_sock.connect((host, port))
 
+box_id = sheets_talker.worksheet.row_count - 1
+
 def send_read_request():
     pi_sock.send("read")
     data = pi_sock.recv(1024)
@@ -62,6 +64,7 @@ def close_connection():
 connect_to_pi()
 while True:
     try:
+        box_id += 1
         print("Sending read request...")
         data = send_read_request()
         data = json.loads(data.decode('utf-8'))
@@ -71,9 +74,9 @@ while True:
         # publish data to google sheets
         msg = ""
         if data == "Error":
-            msg = ["=NOW()", "Error"]
+            msg = [box_id, "Error"]
         else:
-            msg = ["=NOW()", data['Smoke'], data['Risk'], data['Temperature'], data['Humidity'], data['Alert']]
+            msg = [box_id, data['Smoke'], data['Risk'], data['Temperature'], data['Humidity'], data['Alert']]
         sheets_talker.worksheet.append_row(msg, value_input_option='USER_ENTERED') #add a new row for the box
     except ValueError:
         print("Error fetching and publishing data.")
