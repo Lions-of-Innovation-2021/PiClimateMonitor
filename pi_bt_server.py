@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import bluetooth
 import subprocess
 import json

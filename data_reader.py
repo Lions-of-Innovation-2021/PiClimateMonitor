@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 # Reads sensor data on the Raspberry Pi
 
 import sheets_talker
