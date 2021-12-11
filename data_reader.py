@@ -2,7 +2,6 @@
 
 # Reads sensor data on the Raspberry Pi
 
-import sheets_talker
 import adafruit_dht
 import board
 from time import sleep
